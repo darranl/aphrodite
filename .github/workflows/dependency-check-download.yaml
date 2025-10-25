@@ -25,6 +25,16 @@ jobs:
           path: ~/work/aphrodite/aphrodite/dependency-check
           key: dependency-check-${{ vars.DEPENDENCY_CHECK_VERSION }}
 
-      # Runs a single command using the runners shell
+      # Execute the script to download the dependency check CLI
+      # If we had a cache hit this script checks the version is correct, otherwise
+      # this downloads the cli and unzips it to the correct location. 
       - name: Run Download Script
         run: "scripts/update-dependency-check.sh ${{ vars.DEPENDENCY_CHECK_VERSION }}"
+
+      # Upload the log files
+      - name: Upload Log File
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: log-files
+          path: ~/work/**/*.log
