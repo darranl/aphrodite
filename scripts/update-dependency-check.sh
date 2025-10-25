@@ -3,6 +3,7 @@
 function main() {
     validate_version_parameter "$@"
     echo "OWASP Dependency Check CLI Target Version = $target_version"
+    echo "Current Working Dir ` pwd`"
     verify_existing_dependency_check
     download_dependency_check
 }
