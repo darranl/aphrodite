@@ -29,8 +29,9 @@ function verify_existing_dependency_check() {
             echo "Dependency Check CLI is already the target version"
 	    exit 0
 	else
-            echo "Dependency Check CLI needs to be replaced due to version change"
+            echo "Cached dependency check is using an incorrect version"
 	    echo "${command_output}"
+	    exit 1
 	fi
     else
 	echo "No existing Dependency Check CLI installation"
@@ -38,10 +39,6 @@ function verify_existing_dependency_check() {
 }
 
 function download_dependency_check() {
-    if [ -d "dependency-check" ]; then
-	echo "Removing existing dependency-check directory"
-	rm -fR dependency-check
-    fi
     if curl -L "https://github.com/dependency-check/DependencyCheck/releases/download/v$target_version/dependency-check-$target_version-release.zip" \
         -o dependency-check.zip > download.log 2>&1 ; then
         echo "Dependency Check CLI Downloaded"
