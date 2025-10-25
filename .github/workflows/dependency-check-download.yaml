@@ -4,6 +4,9 @@ name: OWASP Dependency Check Download
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+  # Run at 4:26 every day
+  schedule:
+     - cron: "26 4 * * *"
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
