@@ -1,0 +1,43 @@
+name: Galleon Download
+
+# Controls when the workflow will run
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  # Run at 4:41 every day
+  schedule:
+     - cron: "41 4 * * *"
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      # Cache the instllation
+      - name: Cache Galleon Installation
+        id: cache-installation
+        uses: actions/cache@v4
+        with:
+          path: ~/work/aphrodite/aphrodite/galleon
+          key: galleon-${{ vars.GALLEON_VERSION }}
+
+      # Execute the script to download Galleon
+      # If already downloaded the script terminates, otherwise it downloads and installs
+      # Galleon
+      - name: Run Download Script
+        run: "scripts/update-galleon.sh ${{ vars.GALLEON_VERSION }}"
+
+      # Upload the log files
+      - name: Upload Log File
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: log-files
+          path: ~/work/**/*.log
