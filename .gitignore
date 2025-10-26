@@ -1,8 +1,12 @@
 dependency-check
 dependency-check.stale
 dependency-check.zip
+dependency-check-report.html
+dependency-check-report.json
+dependency-scan.log
 download.log
 galleon
 galleon.zip
+owasp-database
 unzip.log
 wildfly
