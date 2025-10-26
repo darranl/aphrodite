@@ -50,7 +50,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/work/aphrodite/aphrodite/owasp-database
-          key: owasp-database-${{ github.run_id }}-${{ github.run_attempt }}
+          key: owasp-database-${{ github.run_id }}-${{ github.run_attempt }}-${{ strategy.job-index}}
           restore-keys: owasp-database-
 
       # Populate a properties file with secrets
@@ -66,7 +66,7 @@ jobs:
 
       # Upload the log files
       - name: Upload Scan Results
-        if: failure()
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: scan-results-${{ matrix.version }}
@@ -77,5 +77,5 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: log-files
+          name: log-files-${{ matrix.version }}
           path: ~/work/**/*.log
