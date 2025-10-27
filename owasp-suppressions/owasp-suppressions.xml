@@ -137,6 +137,37 @@
       <packageUrl regex="true">^pkg:maven/org\.wildfly\.extras\.vertx/wildfly-vertx-.*@.*$</packageUrl>
       <cpe>cpe:/a:redhat:wildfly</cpe>
    </suppress>
+   <suppress>
+     <notes><![CDATA[
+     file name: jboss-cli-client.jar
+
+     Version information can not be derived for this jar so scip the CPE patching.
+     ]]></notes>
+     <filePath regex="true">^.*/wildfly/bin/client/jboss-cli-client.jar$</filePath>
+     <cpe>cpe:/a:redhat:wildfly</cpe>
+     <cpe>cpe:/a:redhat:wildfly_core</cpe>
+   </suppress>
+   <suppress>
+     <notes><![CDATA[
+     file name: jboss-client.jar
+
+     Version information can not be derived for this jar so scip the CPE patching.
+     ]]></notes>
+     <filePath regex="true">^.*/wildfly/bin/client/jboss-client.jar$</filePath>
+     <cpe>cpe:/a:redhat:wildfly</cpe>
+   </suppress>
+   <suppress>
+     <notes><![CDATA[
+     file name: wildfly-elytron-tool.jar 
+
+     Version information can not be derived for this jar so scip the CPE patching.
+     ]]></notes>
+     <filePath regex="true">^.*/wildfly/bin/wildfly-elytron-tool.jar$</filePath>
+     <cpe>cpe:/a:redhat:wildfly</cpe>
+     <cpe>cpe:/a:redhat:wildfly_core</cpe>
+     <cpe>cpe:/a:redhat:wildfly_elytron</cpe>
+   </suppress>
+
    <!-- CVE Expressions -->
 
    <!-- In this section specific CVEs are supressed where we have triaged we are not interested in them being reported. -->
