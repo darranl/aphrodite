@@ -273,4 +273,13 @@
       <packageUrl regex="true">^pkg:maven/org\.eclipse\.jgit/org\.eclipse\.jgit.*@6\.10\.1.*$</packageUrl>
       <cve>CVE-2025-4949</cve>
    </suppress>
+   <suppress>
+      <notes><![CDATA[
+      file name: jipijapa-hibernate6-38.0.0.Final.jar
+
+      This was fixed in WildFly 26.1.1.Final and 27.0.0.Final WFLY-15998.
+      ]]></notes>
+      <packageUrl regex="true">^pkg:maven/org\.wildfly/.*@.*$</packageUrl>
+      <cve>CVE-2022-0866</cve>
+   </suppress>
 </suppressions>
