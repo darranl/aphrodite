@@ -167,6 +167,15 @@
      <cpe>cpe:/a:redhat:wildfly_core</cpe>
      <cpe>cpe:/a:redhat:wildfly_elytron</cpe>
    </suppress>
+   <suppress>
+     <notes><![CDATA[
+     file name: wildfly-elytron-oidc-client-subsystem-38.0.0.Final.jar
+
+     The OIDC subsystem should not map to oidc:oidc
+     ]]></notes>
+     <packageUrl regex="true">^pkg:maven/org\.wildfly/wildfly-elytron-oidc-client-subsystem@.*$</packageUrl>
+     <cpe>cpe:/a:openid:openid</cpe>
+  </suppress>
 
    <!-- CVE Expressions -->
 
