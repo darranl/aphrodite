@@ -322,4 +322,13 @@
       <packageUrl regex="true">^pkg:maven/org\.wildfly/.*@.*$</packageUrl>
       <cve>CVE-2022-0866</cve>
    </suppress>
+   <suppress>
+     <notes><![CDATA[
+     file name: elasticsearch-rest-client-8.15.4.jar
+
+     [WFLY-21079] This CVE is about the server side of the connection, not the client library we depend on.
+     ]]></notes>
+     <packageUrl regex="true">^pkg:maven/org\.elasticsearch\.client/elasticsearch-rest-client.*@.*$</packageUrl>
+     <cve>CVE-2024-52979</cve>
+  </suppress>
 </suppressions>
