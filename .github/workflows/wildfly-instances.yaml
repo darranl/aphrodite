@@ -4,7 +4,7 @@ name: WildFly Maintenance
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-  # Run at 4:41 every day
+  # Run at 5:22 every day
   schedule:
      - cron: "22 5 * * *"
 
@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version: [35.0.1.Final, 36.0.1.Final, 37.0.1.Final, 38.0.0.Final]
+        version: [35.0.1.Final, 36.0.1.Final, 37.0.1.Final, 38.0.1.Final]
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
