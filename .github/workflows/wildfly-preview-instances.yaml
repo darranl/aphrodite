@@ -1,0 +1,52 @@
+name: WildFly Preview Maintenance
+
+# Controls when the workflow will run
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  # Run at 5:22 every day
+  schedule:
+     - cron: "27 5 * * *"
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  provision-matrix:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: [38.0.1.Final]
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      # Cache the instllation
+      - name: Cache WildFly Installation
+        id: wildfly-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/work/aphrodite/aphrodite/wildfly
+          key: wildfly-${{ matrix.version}}-Preview
+
+      # Cache the instllation
+      - name: Cache Galleon Installation
+        id: galleon-installation
+        uses: actions/cache/restore@v4
+        with:
+          path: ~/work/aphrodite/aphrodite/galleon
+          key: galleon-${{ vars.GALLEON_VERSION }}
+          fail-on-cache-miss: true
+
+      # If the WildFly Cache was a miss - provision the server.
+      - name: Provision WildFly
+        if: steps.wildfly-cache.outputs.cache-hit != 'true'
+        run: " ./galleon/bin/galleon.sh install wildfly-preview#${{ matrix.version }} --dir=wildfly"
+
+      # Upload the log files
+      - name: Upload Log File
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: log-files
+          path: ~/work/**/*.log
