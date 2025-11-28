@@ -331,4 +331,13 @@
      <packageUrl regex="true">^pkg:maven/org\.elasticsearch\.client/elasticsearch-rest-client.*@.*$</packageUrl>
      <cve>CVE-2024-52979</cve>
   </suppress>
+  <suppress until="2026-11-28">
+     <notes><![CDATA[
+     file name: angus-activation-2.0.3.jar
+
+     https://github.com/darranl/aphrodite/issues/18 SMTPTransport is not a part of angus-activation.
+     ]]></notes>
+     <packageUrl regex="true">^pkg:maven/org\.eclipse\.angus/angus-activation@.*$</packageUrl>
+     <cve>CVE-2025-7962</cve>
+  </suppress>
 </suppressions>
