@@ -344,7 +344,7 @@
      <notes><![CDATA[
      file name: micrometer-registry-prometheus-1.15.6.jar
 
-     The idenfied CVE is in relation to the Prometheus server not this jar:
+     The identified CVE is in relation to the Prometheus server not this jar:
        https://github.com/darranl/aphrodite/issues/20 
      ]]></notes>
      <sha1>2c96814ef6eff573abc94210eb8c4a465efac6f0</sha1>
