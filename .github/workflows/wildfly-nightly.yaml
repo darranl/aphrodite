@@ -38,9 +38,11 @@ jobs:
         run: |
           VERSION_NAME=${{ matrix.version}}
 
-          if [[ $VERSION_NAME == "main" ]] then
+          if [[ $VERSION_NAME == "main" ]]
+          then
             echo "CI_JOB=${{ vars.MAIN_CI }}" >> $GITHUB_OUTPUT
-          elif [[ $VERSION_NAME == "maintenance"]] then
+          elif [[ $VERSION_NAME == "maintenance"]]
+          then
             echo "CI_JOB=${{ vars.MAINTENANCE_CI }}" >> $GITHUB_OUTPUT
           fi
 
