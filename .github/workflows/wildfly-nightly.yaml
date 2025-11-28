@@ -1,0 +1,80 @@
+name: WildFly Nightly Maintenance
+
+# Controls when the workflow will run
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  # Run at 5:47 every day
+  schedule:
+     - cron: "47 5 * * *"
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  provision-matrix:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: [main, maintenance]
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      # Cache the instllation
+      - name: Cache Galleon Installation
+        id: galleon-installation
+        uses: actions/cache/restore@v4
+        with:
+          path: ~/work/aphrodite/aphrodite/galleon
+          key: galleon-${{ vars.GALLEON_VERSION }}
+          fail-on-cache-miss: true
+
+      # The matrix runs a set of steps for main and a set of steps for maintenance, internally
+      # we map to the job name as seen in ci.wildfly.org
+
+      - name: Map version to nightly name in CI
+        id: version-map
+        run: |
+          VERSION_NAME=${{ matrix.version}}
+
+          if [[ $VERSION_NAME == "main" ]] then
+            echo "CI_JOB=${{ vars.MAIN_CI }}" >> $GITHUB_OUTPUT
+          elif [[ $VERSION_NAME == "maintenance "]] then
+            echo "CI_JOB=${{ vars.MAINTENANCE_CI }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Download Nightly Build
+        id: wildfly-nightly
+        uses: wildfly-extras/wildfly-nightly-download@v1
+        with:
+          uri: https://ci.wildfly.org/guestAuth/repository/download/${{ steps.version-map.outputs.CI_JOB }}/latest.lastSuccessful/wildfly-maven-repository.tar.gz
+
+      - name: Provision WildFly
+        run: " ./galleon/bin/galleon.sh install wildfly#${{ steps.wildfly-nightly.outputs.wildfly-version }} --dir=wildfly"
+
+      - name: Provision WildFly Preview
+        run: " ./galleon/bin/galleon.sh install wildfly-preview#${{ steps.wildfly-nightly.outputs.wildfly-version }} --dir=wildfly-preview"
+
+      # Cache the installation
+      - name: Cache WildFly Installation
+        id: wildfly-cache
+        uses: actions/cache/save@v4
+        with:
+          path: ~/work/aphrodite/aphrodite/wildfly
+          key: wildfly-standard-${{ matrix.version}}-${{ github.run_id }}-${{ github.run_attempt }}
+
+      - name: Cache WildFly Preview Installation
+        id: wildfly-cache
+        uses: actions/cache/save@v4
+        with:
+          path: ~/work/aphrodite/aphrodite/wildfly-preview
+          key: wildfly-preview-${{ matrix.version}}-${{ github.run_id }}-${{ github.run_attempt }}
+
+      # Upload the log files
+      - name: Upload Log File
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: log-files
+          path: ~/work/**/*.log
