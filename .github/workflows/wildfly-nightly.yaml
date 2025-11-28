@@ -65,7 +65,7 @@ jobs:
           key: wildfly-standard-${{ matrix.version}}-${{ github.run_id }}-${{ github.run_attempt }}
 
       - name: Cache WildFly Preview Installation
-        id: wildfly-cache
+        id: wildfly-preview-cache
         uses: actions/cache/save@v4
         with:
           path: ~/work/aphrodite/aphrodite/wildfly-preview
