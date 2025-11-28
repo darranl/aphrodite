@@ -29,7 +29,7 @@ jobs:
         with:
           path: ~/work/aphrodite/aphrodite/wildfly
           key: wildfly-${{ matrix.version}}
-          restore-keys: wildfly-${{ matrix.version}}   # Distributions based on nightly runs use unique suffix in cache name.
+          restore-keys: wildfly-${{ matrix.version}}-   # Distributions based on nightly runs use unique suffix in cache name.
           fail-on-cache-miss: true
 
       # Restore Dependency Check CLI from Cache

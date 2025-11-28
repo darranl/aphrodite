@@ -55,9 +55,6 @@ jobs:
       - name: Provision WildFly
         run: " ./galleon/bin/galleon.sh install wildfly#${{ steps.wildfly-nightly.outputs.wildfly-version }} --dir=wildfly"
 
-      - name: Provision WildFly Preview
-        run: " ./galleon/bin/galleon.sh install wildfly-preview#${{ steps.wildfly-nightly.outputs.wildfly-version }} --dir=wildfly-preview"
-
       # Cache the installation
       - name: Cache WildFly Installation
         id: wildfly-cache
@@ -66,11 +63,17 @@ jobs:
           path: ~/work/aphrodite/aphrodite/wildfly
           key: wildfly-standard-${{ matrix.version}}-${{ github.run_id }}-${{ github.run_attempt }}
 
+      - name: Provision WildFly Preview
+        run: |
+          rm -fR ~/work/aphrodite/aphrodite/wildfly
+          ./galleon/bin/galleon.sh install wildfly-preview#${{ steps.wildfly-nightly.outputs.wildfly-version }} --dir=wildfly
+
+      # Cache the installation
       - name: Cache WildFly Preview Installation
         id: wildfly-preview-cache
         uses: actions/cache/save@v4
         with:
-          path: ~/work/aphrodite/aphrodite/wildfly-preview
+          path: ~/work/aphrodite/aphrodite/wildfly
           key: wildfly-preview-${{ matrix.version}}-${{ github.run_id }}-${{ github.run_attempt }}
 
       # Upload the log files
