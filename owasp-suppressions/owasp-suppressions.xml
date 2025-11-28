@@ -340,4 +340,14 @@
      <packageUrl regex="true">^pkg:maven/org\.eclipse\.angus/angus-activation@.*$</packageUrl>
      <cve>CVE-2025-7962</cve>
   </suppress>
+  <suppress until="2026-11-28">
+     <notes><![CDATA[
+     file name: micrometer-registry-prometheus-1.15.6.jar
+
+     The identified CVE is in relation to the Prometheus server not this jar:
+       https://github.com/darranl/aphrodite/issues/20 
+     ]]></notes>
+     <sha1>2c96814ef6eff573abc94210eb8c4a465efac6f0</sha1>
+     <cve>CVE-2019-3826</cve>
+  </suppress>
 </suppressions>
