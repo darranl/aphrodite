@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version: [main, maintenance]
+        version: [upstream, maintenance]
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -38,9 +38,9 @@ jobs:
         run: |
           VERSION_NAME=${{ matrix.version}}
 
-          if [[ $VERSION_NAME == "main" ]]
+          if [[ $VERSION_NAME == "upstream" ]]
           then
-            echo "CI_JOB=${{ vars.MAIN_CI }}" >> $GITHUB_OUTPUT
+            echo "CI_JOB=${{ vars.UPSTREAM_CI }}" >> $GITHUB_OUTPUT
           elif [[ $VERSION_NAME == "maintenance" ]]
           then
             echo "CI_JOB=${{ vars.MAINTENANCE_CI }}" >> $GITHUB_OUTPUT
