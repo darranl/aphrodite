@@ -113,7 +113,7 @@
    <suppress>
       <notes><![CDATA[
       file name: wildfly-clustering-server-jgroups-1.1.2.Final.jar
-      
+
       [WFLY-19762] Suppress wildfly-clustering-server-jgroups mapping to redhat:jgroups CPE.
       ]]></notes>
       <packageUrl regex="true">^pkg:maven/org\.wildfly\.clustering/wildfly-clustering-server-jgroups@.*$</packageUrl>
@@ -122,7 +122,7 @@
    <suppress>
       <notes><![CDATA[
       file name: wildfly-launcher-1.0.0.Final.jar
-      
+
       [WFLY-20135] Suppress wildfly-launcher mapping to the WildFly CPE as it is an independent artifact.
       ]]></notes>
       <packageUrl regex="true">^pkg:maven/org\.wildfly\.launcher/wildfly-launcher@.*$</packageUrl>
@@ -158,7 +158,7 @@
    </suppress>
    <suppress>
      <notes><![CDATA[
-     file name: wildfly-elytron-tool.jar 
+     file name: wildfly-elytron-tool.jar
 
      Version information can not be derived for this jar so scip the CPE patching.
      ]]></notes>
@@ -307,7 +307,7 @@
       file name: org.eclipse.jgit-6.10.1.202505221210-r.jar
 
       [WFLY-20741] This CVE is fixed in version 6.10.1
- 
+
       https://projects.eclipse.org/projects/technology.jgit/releases/6.10.1
       ]]></notes>
       <packageUrl regex="true">^pkg:maven/org\.eclipse\.jgit/org\.eclipse\.jgit.*@6\.10\.1.*$</packageUrl>
@@ -322,14 +322,19 @@
       <packageUrl regex="true">^pkg:maven/org\.wildfly/.*@.*$</packageUrl>
       <cve>CVE-2022-0866</cve>
    </suppress>
-   <suppress>
+   <suppress until="2027-01-23">
      <notes><![CDATA[
      file name: elasticsearch-rest-client-8.15.4.jar
 
      [WFLY-21079] This CVE is about the server side of the connection, not the client library we depend on.
+     https://github.com/darranl/aphrodite/issues/26
      ]]></notes>
      <packageUrl regex="true">^pkg:maven/org\.elasticsearch\.client/elasticsearch-rest-client.*@.*$</packageUrl>
      <cve>CVE-2024-52979</cve>
+     <cve>CVE-2025-37731</cve>
+     <cve>CVE-2025-68384</cve>
+     <cve>CVE-2025-37727</cve>
+     <cve>CVE-2025-68390</cve>
   </suppress>
   <suppress until="2026-11-28">
      <notes><![CDATA[
@@ -345,7 +350,7 @@
      file name: micrometer-registry-prometheus-1.15.6.jar
 
      The identified CVE is in relation to the Prometheus server not this jar:
-       https://github.com/darranl/aphrodite/issues/20 
+       https://github.com/darranl/aphrodite/issues/20
      ]]></notes>
      <sha1>2c96814ef6eff573abc94210eb8c4a465efac6f0</sha1>
      <cve>CVE-2019-3826</cve>
