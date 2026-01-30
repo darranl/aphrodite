@@ -303,14 +303,17 @@
       <packageUrl regex="true">^pkg:maven/org\.jboss\.resteasy/resteasy\-tracing\-api@.*$</packageUrl>
       <cve>CVE-2021-20293</cve>
    </suppress>
-   <suppress until="2026-09-29">
+   <suppress until="2027-01-30">
       <notes><![CDATA[
       file name: vertx-kafka-client-4.4.9.jar
 
       [WFLY-19764] Suppress CVE-2024-8391 mapping to vertx-kafka-client
+      https://github.com/darranl/aphrodite/issues/34 Suppress CVE-2025-11965 and CVE-2025-11966
       ]]></notes>
       <packageUrl regex="true">^pkg:maven/io\.vertx/vertx-kafka-client@.*$</packageUrl>
       <cve>CVE-2024-8391</cve>
+      <cve>CVE-2025-11965</cve>
+      <cve>CVE-2025-11966</cve>
    </suppress>
    <suppress until="2026-01-03">
       <notes><![CDATA[
