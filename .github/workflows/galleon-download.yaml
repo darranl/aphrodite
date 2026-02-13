@@ -25,7 +25,7 @@ jobs:
         id: cache-installation
         uses: actions/cache@v4
         with:
-          path: ~/work/aphrodite/aphrodite/galleon
+          path: ${{ github.workspace }}/galleon
           key: galleon-${{ vars.GALLEON_VERSION }}
 
       # Execute the script to download Galleon

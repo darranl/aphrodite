@@ -27,7 +27,7 @@ jobs:
         id: wildfly-cache
         uses: actions/cache/restore@v4
         with:
-          path: ~/work/aphrodite/aphrodite/wildfly
+          path: ${{ github.workspace }}/wildfly
           key: wildfly-${{ matrix.version}}
           restore-keys: wildfly-${{ matrix.version}}-   # Distributions based on nightly runs use unique suffix in cache name.
           fail-on-cache-miss: true
@@ -37,7 +37,7 @@ jobs:
         id: dependency-check-cli-installation
         uses: actions/cache/restore@v4
         with:
-          path: ~/work/aphrodite/aphrodite/dependency-check
+          path: ${{ github.workspace }}/dependency-check
           key: dependency-check-${{ vars.DEPENDENCY_CHECK_VERSION }}
           fail-on-cache-miss: true
 
@@ -50,7 +50,7 @@ jobs:
         id: cache-database
         uses: actions/cache@v4
         with:
-          path: ~/work/aphrodite/aphrodite/owasp-database
+          path: ${{ github.workspace }}/owasp-database
           key: owasp-database-${{ github.run_id }}-${{ github.run_attempt }}-${{ strategy.job-index}}
           restore-keys: owasp-database-
 
@@ -71,7 +71,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: scan-results-${{ matrix.version }}
-          path: ~/work/aphrodite/aphrodite/dependency-check-report.*
+          path: ${{ github.workspace }}/dependency-check-report.*
 
       # Upload the log files
       - name: Upload Log File

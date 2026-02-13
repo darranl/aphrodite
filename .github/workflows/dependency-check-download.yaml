@@ -25,12 +25,12 @@ jobs:
         id: cache-installation
         uses: actions/cache@v4
         with:
-          path: ~/work/aphrodite/aphrodite/dependency-check
+          path: ${{ github.workspace }}/dependency-check
           key: dependency-check-${{ vars.DEPENDENCY_CHECK_VERSION }}
 
       # Execute the script to download the dependency check CLI
       # If we had a cache hit this script checks the version is correct, otherwise
-      # this downloads the cli and unzips it to the correct location. 
+      # this downloads the cli and unzips it to the correct location.
       - name: Run Download Script
         run: "scripts/update-dependency-check.sh ${{ vars.DEPENDENCY_CHECK_VERSION }}"
 
