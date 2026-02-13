@@ -23,7 +23,7 @@ For background, see the Linux Foundation’s guidance:
 [Navigating Global Regulations and Open Source: US OFAC Sanctions](https://www.linuxfoundation.org/blog/navigating-global-regulations-and-open-source-us-ofac-sanctions).
 
 ## Issues
-The WildFly SCA Scanner project uses GitHub Issues to manage issues. All issues can be found [here](https://github.com/wildfly/wildfly-sca-scanner/issues).
+The WildFly SCA Scanner project uses GitHub Issues to manage issues. All issues can be found [here](https://github.com/wildfly-security/wildfly-sca-scanner/issues).
 
 To create a new issue, comment on an existing issue, or assign an issue to yourself, you'll need to first [create a GitHub account](https://github.com/signup).
 
@@ -32,7 +32,7 @@ Before beginning work on an issue, it's good to start a thread in the [wildfly-d
 
 
 ## Forking the Project
-To contribute, you will first need to fork the [wildfly-sca-scanner](https://github.com/wildfly/wildfly-sca-scanner) repository.
+To contribute, you will first need to fork the [wildfly-sca-scanner](https://github.com/wildfly-security/wildfly-sca-scanner) repository.
 
 This can be done by looking in the top-right corner of the repository page and clicking "Fork".
 
@@ -54,6 +54,6 @@ When submitting a PR, please keep the following guidelines in mind:
 
 1. In general, it's good practice to squash all of your commits into a single commit. For larger changes, it's ok to have multiple meaningful commits. If you need help with squashing your commits, feel free to ask us how to do this on your pull request. We're more than happy to help!
 
-  1. Please include the GitHub issue you worked on in the title of your pull request and in your commit message. For example, for issue [999](https://github.com/wildfly/wildfly-sca-scanner/issues/999), the PR title and commit message should be `[Issue_999] Create a testcase which verifies behaviour of the foo`.
+  1. Please include the GitHub issue you worked on in the title of your pull request and in your commit message. For example, for issue [999](https://github.com/wildfly-security/wildfly-sca-scanner/issues/999), the PR title and commit message should be `[Issue_999] Create a testcase which verifies behaviour of the foo`.
 
-2. Please include the link to the GitHub issue you worked on in the description of the pull request. For example, if your PR adds a fix for [999](https://github.com/wildfly/wildfly-sca-scanner/issues/999), the PR description should contain a link to https://github.com/wildfly/wildfly-sca-scanner/issues/999.
+2. Please include the link to the GitHub issue you worked on in the description of the pull request. For example, if your PR adds a fix for [999](https://github.com/wildfly-security/wildfly-sca-scanner/issues/999), the PR description should contain a link to https://github.com/wildfly-security/wildfly-sca-scanner/issues/999.
