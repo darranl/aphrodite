@@ -31,7 +31,7 @@ jobs:
         id: cache-database
         uses: actions/cache@v4
         with:
-          path: ~/work/aphrodite/aphrodite/owasp-database
+          path: ${{ github.workspace }}/owasp-database
           key: owasp-database-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: owasp-database-
 
@@ -40,7 +40,7 @@ jobs:
         id: cache-installation
         uses: actions/cache/restore@v4
         with:
-          path: ~/work/aphrodite/aphrodite/dependency-check
+          path: ${{ github.workspace }}/dependency-check
           key: dependency-check-${{ vars.DEPENDENCY_CHECK_VERSION }}
           fail-on-cache-miss: true
 

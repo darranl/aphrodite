@@ -26,7 +26,7 @@ jobs:
         id: wildfly-cache
         uses: actions/cache@v4
         with:
-          path: ~/work/aphrodite/aphrodite/wildfly
+          path: ${{ github.workspace }}/wildfly
           key: wildfly-${{ matrix.version}}-Preview
 
       # Cache the instllation
@@ -34,7 +34,7 @@ jobs:
         id: galleon-installation
         uses: actions/cache/restore@v4
         with:
-          path: ~/work/aphrodite/aphrodite/galleon
+          path: ${{ github.workspace }}/galleon
           key: galleon-${{ vars.GALLEON_VERSION }}
           fail-on-cache-miss: true
 
